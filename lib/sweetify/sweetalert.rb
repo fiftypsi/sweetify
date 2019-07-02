@@ -100,8 +100,9 @@ module Sweetify
         opts[:title] = opts[:text]
         opts.delete(:text)
       end
-
+      
       flash[:sweetify] = opts.to_json
+      flash[:alert_id] = SecureRandom.hex
     end
   end
 end

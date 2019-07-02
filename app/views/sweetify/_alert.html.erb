@@ -1,5 +1,13 @@
 <% if flash[:sweetify].present? %>
-    <script>
+  <script>
+    if (typeof(Storage) !== "undefined") {
+      if(sessionStorage["flash-<%= flash[:alert_id] %>"] != "shown"){
+        <%= Sweetify.render(flash[:sweetify]) %>
+        sessionStorage["flash-<%= flash[:alert_id] %>"] = "shown";
+      }
+    } else {
+      // No Web Storage support
       <%= Sweetify.render(flash[:sweetify]) %>
-    </script>
+    }
+  </script>
 <% end %>
